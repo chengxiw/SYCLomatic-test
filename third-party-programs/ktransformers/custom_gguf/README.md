@@ -76,10 +76,16 @@ torch==2.7.0.dev20250224+xpu
 ```
 
 ### 4 Build the migrated ktransformers
+There 8 tests available in the current stage:
+* 3 sycl tests to test single kernel (passed) in ./migrated/single_kernel_test
+* 4 sycl tests to test single kernel (results mismatch) in ./migrated/single_kernel_test_need_debug
+* 1 torch test to test dequantize_q8_0 in ./migrated/torch_test  
+
+You can select one - ${test_directory}/${test_name}, and compile it through
 ```
-$ cd ${custom_gguf_HOME}/dpct_output
+$ cd ${test_directory}
 $ source /opt/intel/oneapi/setvars.sh
-$ icpx -fsycl -I/opt/intel/oneapi/compiler/latest/include/sycl -I/~/workspace/xputorch/lib/python3.10/site-packages/torch/include -I/usr/include/python3.10 -I/~/workspace/xputorch/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -L/~/workspace/xputorch/lib/python3.10/site-packages/torch/lib -ltorch_xpu -ltorch_cpu -lc10_xpu -lc10 ${file_name} -o ${out_name}
+$ icpx -fsycl -I/opt/intel/oneapi/compiler/latest/include/sycl -I/~/workspace/xputorch/lib/python3.10/site-packages/torch/include -I/usr/include/python3.10 -I/~/workspace/xputorch/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -L/~/workspace/xputorch/lib/python3.10/site-packages/torch/lib -ltorch_xpu -ltorch_cpu -lc10_xpu -lc10 ${test_name} -o ${out_name}
 ```
 
 ### 5 Run migrated SYCL version ktransformers
