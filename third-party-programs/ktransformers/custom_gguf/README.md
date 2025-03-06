@@ -69,10 +69,10 @@ $ source /opt/intel/oneapi/setvars.sh
 $ export LD_LIBRARY_PATH=~/workspace/xputorch/lib/python3.10/site-packages/torch/lib:$LD_LIBRARY_PATH
 ```
 #### 3.2 Install xpu torch
-Install xpu torch through `pip install -r requirements.txt`. The requirements.txt is as follows:
+Install xpu torch through 
+
 ```
---extra-index-url https://download.pytorch.org/whl/nightly/xpu
-torch==2.7.0.dev20250224+xpu
+pip install torch==2.7.0.dev20250305+xpu --extra-index-url https://download.pytorch.org/whl/nightly/xpu
 ```
 
 ### 4 Build the migrated ktransformers
